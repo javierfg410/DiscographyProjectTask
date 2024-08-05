@@ -1,0 +1,21 @@
+version: '2.4'
+services:
+    webservice:
+        container_name: db-mysql
+        restart: always
+        platform: linux/x86_64
+        image: mysql:8.0
+        ports:
+            - 3306:3306
+        volumes:
+            - ./home:/home
+            - ./files:/var/lib/mysql
+            - ./logs:/var/log/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+        networks:
+            -  jchan-local
+
+networks:
+    jchan-local:
+        name: jchan-local

@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  web:
+    container_name: discographyprojecttask
+    restart: always
+    tty: true
+    image:  discographyprojecttask
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    ports:
+      - 8088:80
+    volumes:
+      - ./:/var/www/html
+      - ./.docker/php/php.ini:/etc/php81/php.ini
+    command: bash -c "./.docker/scripts/initLocal.sh"
+
